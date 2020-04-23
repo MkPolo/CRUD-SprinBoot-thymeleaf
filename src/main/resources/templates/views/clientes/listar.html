@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="planilla/template :: head">
+</head>
+<body>
+	<header th:replace="planilla/template :: header"></header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">NOMBRES</th>
+					<th scope="col">APELLIDOS</th>
+					<th scope="col">TELEFONO</th>
+					<th scope="col">CORREO</th>
+					<th scope="col">CIUDAD</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl:${clientes}">					
+					<td th:text="${cl.id}"></td>
+					<td th:text="${cl.nombres}"></td>
+					<td th:text="${cl.apellidos}"></td>
+					<td th:text="${cl.telefono}"></td>
+					<td th:text="${cl.email}"></td>
+					<td th:text="${cl.ciudad.ciudad}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="planilla/template :: footer"></footer>
+</body>
+</html>

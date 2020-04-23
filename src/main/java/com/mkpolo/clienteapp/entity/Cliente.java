@@ -32,7 +32,7 @@ public class Cliente implements Serializable{
 	private String email;
 
 	@ManyToOne
-	@JoinColumn(name="cuidades_id")
+	@JoinColumn(name="ciudades_id")
 	private Ciudad ciudad;
 
 	public long getId() {
