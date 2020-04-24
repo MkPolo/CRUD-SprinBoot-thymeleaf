@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="clientes")
@@ -23,12 +26,18 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
+	@NotEmpty
 	private String nombres;
 
+	@NotEmpty
 	private String apellidos;
 
+	@NotEmpty
+	@Pattern(regexp="[0-9]{3}-[0-9]{3}-[0-9]{3}")
 	private String telefono;
 
+	@NotEmpty
+	@Email
 	private String email;
 
 	@ManyToOne

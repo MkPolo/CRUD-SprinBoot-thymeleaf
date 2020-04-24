@@ -2,9 +2,12 @@ package com.mkpolo.clienteapp.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,7 +53,19 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/save")
-	public String guardar(@ModelAttribute Cliente cliente) {
+	public String guardar(@Valid @ModelAttribute Cliente cliente, BindingResult result, Model model) {
+		
+		List<Ciudad> listCiudades = ciudadService.listarCiudad();
+		
+		if (result.hasErrors()) {
+			
+			model.addAttribute("titulo","Formulario: Nuevo Cliente");
+			model.addAttribute("cliente",cliente);
+			model.addAttribute("ciudades",listCiudades);
+			
+			return "/views/clientes/frmCrear";
+		}
+		
 		clienteService.guardar(cliente);
 		return "redirect:/views/clientes/";
 	}
