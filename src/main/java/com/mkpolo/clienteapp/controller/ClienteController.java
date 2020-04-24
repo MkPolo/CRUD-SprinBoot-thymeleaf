@@ -68,4 +68,12 @@ public class ClienteController {
 		return "/views/clientes/frmCrear";
 	}
 	
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") Long idCliente) {
+		
+		clienteService.eliminar(idCliente);
+		
+		return "redirect:/views/clientes/";
+	}
+	
 }
