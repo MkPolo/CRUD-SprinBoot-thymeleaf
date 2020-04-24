@@ -22,6 +22,7 @@
 					<th scope="col">TELEFONO</th>
 					<th scope="col">CORREO</th>
 					<th scope="col">CIUDAD</th>
+					<th scope="col">ACCIONES</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,6 +33,11 @@
 					<td th:text="${cl.telefono}"></td>
 					<td th:text="${cl.email}"></td>
 					<td th:text="${cl.ciudad.ciudad}"></td>
+					<td>
+					<a class="btn btn-warning btn-sm" th:href="@{/views/clientes/edit/} + ${cl.id}" th:text="'Editar'" title="Modificar Registro"></a>
+					<a class="btn btn-danger btn-sm" th:href="@{/views/clientes/delete/} + ${cl.id}"
+					 th:text="'Eliminar'" title="Eliminar Registro" onclick="return confirm('Esta seguro de eliminar el registro?');"></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
