@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mkpolo.clienteapp.entity.Ciudad;
 import com.mkpolo.clienteapp.entity.Cliente;
+import com.mkpolo.clienteapp.service.ICiudadService;
 import com.mkpolo.clienteapp.service.IClienteService;
 
 @Controller
@@ -18,6 +20,9 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 	
+	@Autowired
+	private ICiudadService ciudadService;
+	
 	@GetMapping("/")
 	public String listarClientes(Model model) {
 		List<Cliente> listadoClientes = clienteService.listartodos();
@@ -26,6 +31,19 @@ public class ClienteController {
 		model.addAttribute("clientes", listadoClientes);
 		
 		return "/views/clientes/listar";
+	}
+	
+	@GetMapping("/create")
+	public String crear(Model model) {
+		
+		Cliente cliente = new Cliente();
+		List<Ciudad> listCiudades = ciudadService.listarCiudad();
+		
+		model.addAttribute("titulo","Formulario Nuevo Cliente");
+		model.addAttribute("cliente",cliente);
+		model.addAttribute("ciudades",listCiudades);
+		
+		return "/views/clientes/frmCrear";
 	}
 	
 }
