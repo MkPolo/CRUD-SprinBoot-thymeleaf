@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,7 +42,7 @@ public class ClienteController {
 		Cliente cliente = new Cliente();
 		List<Ciudad> listCiudades = ciudadService.listarCiudad();
 		
-		model.addAttribute("titulo","Formulario Nuevo Cliente");
+		model.addAttribute("titulo","Formulario: Nuevo Cliente");
 		model.addAttribute("cliente",cliente);
 		model.addAttribute("ciudades",listCiudades);
 		
@@ -52,6 +53,19 @@ public class ClienteController {
 	public String guardar(@ModelAttribute Cliente cliente) {
 		clienteService.guardar(cliente);
 		return "redirect:/views/clientes/";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") Long idCliente, Model model) {
+		
+		Cliente cliente = clienteService.buscarPorId(idCliente);
+		List<Ciudad> listCiudades = ciudadService.listarCiudad();
+		
+		model.addAttribute("titulo","Formulario: Editar Cliente");
+		model.addAttribute("cliente",cliente);
+		model.addAttribute("ciudades",listCiudades);
+		
+		return "/views/clientes/frmCrear";
 	}
 	
 }
