@@ -12,7 +12,7 @@
 
 			<div class="card-body">
 
-				<form th:object=${cliente}>
+				<form th:action="@{/views/clientes/save}" th:object=${cliente} method="POST">
 					<div class="form-group row">
 						<label class="col-md-2" for="nombres">Nombres:</label> <input
 							type="text" th:field="*{nombres}" class="form-control form-control-sm col-md-6"
