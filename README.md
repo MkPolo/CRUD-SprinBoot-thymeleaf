@@ -9,7 +9,8 @@
 * Utilizamos las dependencias de: **Spring Boot JPA**, **Spring Web**, **MySQL Driver** y **Thymeleaf**.
 # Database
 * Estaremos utilizando **MySQL** como gestor de base de datos.
-* La base de datos llevará por nombre **spring-db**
+* La base de datos llevará por nombre **spring-db**.
+* Las tablas ser{an creadas utilizando **HIBERNATE**.
 # Interfaz
 * Para las interfaces estaremos utilizando: **Thymeleaf** y [**Bootstrap**](https://getbootstrap.com/).
 * Utilizaremos mensajes personalizados para cada acción realizada.
